@@ -1,12 +1,14 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-ubuntu:latest
 
-RUN echo "deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free" \
-    | tee /etc/apt/sources.list.d/resilio-sync.list
+ADD https://download-cdn.resilio.com/stable/linux-armhf/resilio-sync_armhf.tar.gz /tmp/sync.tgz
+RUN tar -xf /tmp/sync.tgz -C /usr/bin rslsync && rm -f /tmp/sync.tgz
 
-RUN curl -LO http://linux-packages.resilio.com/resilio-sync/key.asc \
-    && apt-key add ./key.asc
+COPY sync.conf.default /etc/
+COPY run_sync /usr/bin/
 
-RUN apt-get update && apt-get install -y --no-install-recommends resilio-sync
+EXPOSE 8888
+EXPOSE 55555
 
-# temporary hack to figure out how to start Resilio Sync
-CMD ["tail", "-f", "/dev/null"]
+VOLUME /mnt/sync
+
+CMD ["run_sync", "--config", "/mnt/sync/sync.conf"]
