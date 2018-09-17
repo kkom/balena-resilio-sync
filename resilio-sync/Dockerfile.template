@@ -1,4 +1,4 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-ubuntu:latest
+FROM resin/%%RESIN_MACHINE_NAME%%-alpine:latest
 
 ADD https://download-cdn.resilio.com/stable/linux-armhf/resilio-sync_armhf.tar.gz /tmp/sync.tgz
 RUN tar -xf /tmp/sync.tgz -C /usr/bin rslsync && rm -f /tmp/sync.tgz
