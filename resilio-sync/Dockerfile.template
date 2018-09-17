@@ -1,16 +1,9 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-ubuntu:latest
 
 RUN echo "deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free" \
-    | sudo tee /etc/apt/sources.list.d/resilio-sync.list
+    | tee /etc/apt/sources.list.d/resilio-sync.list
 
 RUN curl -LO http://linux-packages.resilio.com/resilio-sync/key.asc \
     && apt-key add ./key.asc
 
-RUN dpkg --add-architecture armhf
-
-RUN apt-get update
-
-RUN echo "deb [arch=armhf] http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free" \
-    > /etc/apt/sources.list.d/resilio-sync.list
-
-RUN cat /etc/apt/sources.list.d/resilio-sync.list
+RUN apt-get update && apt-get install -y --no-install-recommends resilio-sync
