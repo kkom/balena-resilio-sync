@@ -1,0 +1,10 @@
+version: '2'
+volumes:
+    resilio-sync-data:
+services:
+  resilio-sync:
+    image: resilio/sync
+    ports:
+      - "80:8888"
+    volumes:
+      - "resilio-sync-data:/mnt/sync"
