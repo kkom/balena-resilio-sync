@@ -3,7 +3,7 @@ volumes:
     resilio-sync-data:
 services:
   resilio-sync:
-    image: resilio/sync
+    build: ./resilio-sync
     ports:
       - "80:8888"
     volumes:
