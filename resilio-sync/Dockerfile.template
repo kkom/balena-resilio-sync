@@ -7,3 +7,6 @@ RUN curl -LO http://linux-packages.resilio.com/resilio-sync/key.asc \
     && apt-key add ./key.asc
 
 RUN apt-get update && apt-get install -y --no-install-recommends resilio-sync
+
+# temporary hack to figure out how to start Resilio Sync
+CMD ["tail", "-f", "/dev/null"]
