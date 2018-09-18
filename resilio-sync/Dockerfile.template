@@ -3,6 +3,7 @@ FROM resin/%%RESIN_MACHINE_NAME%%-ubuntu:latest
 # so that we can access external drives
 ENV INITSYSTEM on
 RUN apt-get update && apt-get install -y exfat-fuse exfat-utils
+RUN echo "LABEL=mnt-storage /mnt/storage exfat rw,relatime,discard,data=ordered 0 2" >> /etc/fstab
 COPY mnt-storage.mount /etc/systemd/system/
 RUN systemctl enable mnt-storage.mount
 
