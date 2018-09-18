@@ -1,5 +1,9 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-alpine:latest
 
+# hack to force cache rebuild
+ENV version 1.0
+
+# pull the appropriate version of the image
 RUN case %%RESIN_ARCH%% in \
       rpi) \
         RESILIO_ARCH="arm" \
@@ -12,9 +16,11 @@ RUN case %%RESIN_ARCH%% in \
     && wget https://download-cdn.resilio.com/stable/linux-$RESILIO_ARCH/resilio-sync_$RESILIO_ARCH.tar.gz -O /tmp/resilio.tgz
 RUN tar -xf /tmp/resilio.tgz -C /usr/bin rslsync && rm -f /tmp/resilio.tgz
 
+# copy extra files needed to run Resilio
 COPY sync.conf.default /etc/
 COPY run_sync /usr/bin/
 
+# expose the necessary resources outside of the container
 EXPOSE 8888
 EXPOSE 55555
 
