@@ -1,4 +1,4 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-alpine:latest
+FROM resin/%%RESIN_MACHINE_NAME%%-raspbian:latest
 
 # hack to force cache rebuild
 ENV version 1.0
