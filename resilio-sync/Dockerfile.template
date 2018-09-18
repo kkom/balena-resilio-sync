@@ -1,7 +1,16 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-alpine:latest
 
-ADD https://download-cdn.resilio.com/stable/linux-armhf/resilio-sync_armhf.tar.gz /tmp/sync.tgz
-RUN tar -xf /tmp/sync.tgz -C /usr/bin rslsync && rm -f /tmp/sync.tgz
+RUN case %%RESIN_ARCH%% in \
+      rpi) \
+        RESILIO_ARCH="arm" \
+        ;; \
+      armv7hf) \
+        RESILIO_ARCH="armhf" \
+        ;; \
+    esac \
+    && printf $RESILIO_ARCH \
+    && wget https://download-cdn.resilio.com/stable/linux-$RESILIO_ARCH/resilio-sync_$RESILIO_ARCH.tar.gz -O /tmp/resilio.tgz
+RUN tar -xf /tmp/resilio.tgz -C /usr/bin rslsync && rm -f /tmp/resilio.tgz
 
 COPY sync.conf.default /etc/
 COPY run_sync /usr/bin/
