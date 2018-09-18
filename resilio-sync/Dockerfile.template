@@ -1,13 +1,10 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-alpine:latest
+FROM resin/%%RESIN_MACHINE_NAME%%-ubuntu:latest
 
-# hack to force cache rebuild
-ENV version 1.0
-
-# pull the appropriate version of the image
+# pull the binary
 ADD https://download-cdn.resilio.com/stable/linux-armhf/resilio-sync_armhf.tar.gz /tmp/resilio.tgz
 RUN tar -xf /tmp/resilio.tgz -C /usr/bin rslsync && rm -f /tmp/resilio.tgz
 
-# copy extra files needed to run Resilio
+# copy extra files needed to run it
 COPY sync.conf.default /etc/
 COPY run_sync /usr/bin/
 
