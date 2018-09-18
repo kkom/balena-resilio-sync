@@ -3,8 +3,8 @@ FROM resin/%%RESIN_MACHINE_NAME%%-ubuntu:latest
 # so that we can access external drives
 ENV INITSYSTEM on
 RUN apt-get update && apt-get install -y exfat-fuse exfat-utils
-COPY mnt-storage.mount /etc/systemd/system/
-RUN systemctl enable mnt-storage.mount
+COPY mnt-sync.mount /etc/systemd/system/
+RUN systemctl enable mnt-sync.mount
 
 # pull the binary
 ADD https://download-cdn.resilio.com/stable/linux-armhf/resilio-sync_armhf.tar.gz /tmp/resilio.tgz
@@ -17,7 +17,5 @@ COPY run_sync /usr/bin/
 # expose the necessary resources outside of the container
 EXPOSE 8888
 EXPOSE 55555
-
-VOLUME /mnt/sync
 
 CMD ["run_sync", "--config", "/mnt/sync/sync.conf"]

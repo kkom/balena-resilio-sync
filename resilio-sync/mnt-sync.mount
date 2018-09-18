@@ -2,8 +2,8 @@
 Description = External HDD
 
 [Mount]
-What = LABEL=mnt-storage
-Where = /mnt/storage
+What = LABEL=mnt-sync
+Where = /mnt/sync
 Type = exfat
 Options = rw,relatime,data=ordered
 
