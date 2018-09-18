@@ -13,5 +13,4 @@ RUN tar -xf /tmp/resilio.tgz -C /usr/bin rslsync && rm -f /tmp/resilio.tgz
 COPY sync.conf.default /etc/
 COPY run_sync /usr/bin/
 
-CMD ["tail", "-f", "/dev/null"]
-# CMD ["run_sync", "--config", "/mnt/sync/sync.conf"]
+CMD ["run_sync", "--config", "/mnt/sync/sync.conf"]
