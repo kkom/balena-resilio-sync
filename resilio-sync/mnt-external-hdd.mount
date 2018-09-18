@@ -2,7 +2,7 @@
 Description = External HDD
 
 [Mount]
-What = LABEL=external_hdd
+What = LABEL=mnt-external_hdd
 Where = /mnt/external_hdd
 Type = exfat
 Options = rw,relatime,data=ordered
