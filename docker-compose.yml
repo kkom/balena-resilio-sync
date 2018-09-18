@@ -4,4 +4,5 @@ services:
     build: ./resilio-sync
     ports:
       - "80:8888"
+      - "55555"
     privileged: true
