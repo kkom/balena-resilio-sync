@@ -2,6 +2,8 @@ FROM resin/%%RESIN_MACHINE_NAME%%-ubuntu:latest
 
 # so that we can access external drives
 ENV INITSYSTEM on
+COPY mnt-external-hdd.mount /etc/systemd/system/
+RUN systemctl enable mnt-external-hdd.mount
 
 # pull the binary
 ADD https://download-cdn.resilio.com/stable/linux-armhf/resilio-sync_armhf.tar.gz /tmp/resilio.tgz

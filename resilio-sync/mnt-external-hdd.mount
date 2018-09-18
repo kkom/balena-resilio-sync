@@ -1,0 +1,11 @@
+[Unit]
+Description = External HDD
+
+[Mount]
+What = LABEL=external_hdd
+Where = /mnt/external_hdd
+Type = exfat
+Options = rw,relatime,data=ordered
+
+[Install]
+WantedBy = multi-user.target
