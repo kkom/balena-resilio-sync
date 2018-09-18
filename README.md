@@ -1,6 +1,8 @@
 # Resin Resilio Sync
 
-A resin.io application to run Resilio Sync on your ARMv8-based device (i.e. Raspberry Pi 3).
+A resin.io application to run Resilio Sync on your ARMv8-based device (i.e. Raspberry Pi 3, unfortunately not Raspberry Pi Zero).
+
+All of Resilio Sync config and data is stored on the external drive, making it fully portable. I.e. you can easily switch it between different devices, or factory reset the device without losing any configuration or data.
 
 ## Requirements
 
