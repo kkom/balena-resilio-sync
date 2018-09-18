@@ -1,6 +1,6 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-ubuntu:latest
 
-# so that we can access external drives
+# mount the external drive (note: it needs to be formatted and named correctly)
 ENV INITSYSTEM on
 RUN apt-get update && apt-get install -y exfat-fuse exfat-utils
 RUN echo "LABEL=resilio-db /mnt/sync exfat rw,relatime,data=ordered 0 2" >> /etc/fstab
@@ -9,7 +9,7 @@ RUN echo "LABEL=resilio-db /mnt/sync exfat rw,relatime,data=ordered 0 2" >> /etc
 ADD https://download-cdn.resilio.com/stable/linux-armhf/resilio-sync_armhf.tar.gz /tmp/resilio.tgz
 RUN tar -xf /tmp/resilio.tgz -C /usr/bin rslsync && rm -f /tmp/resilio.tgz
 
-# copy extra files needed to run it
+# copy extra files needed to run resilio
 COPY sync.conf.default /etc/
 COPY run_sync /usr/bin/
 
