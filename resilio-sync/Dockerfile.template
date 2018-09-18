@@ -3,15 +3,15 @@ FROM resin/%%RESIN_MACHINE_NAME%%-ubuntu:latest
 # so that we can access external drives
 ENV INITSYSTEM on
 RUN apt-get update && apt-get install -y exfat-fuse exfat-utils
-RUN echo "LABEL=res-storage /mnt/storage exfat rw,relatime,data=ordered 0 2" >> /etc/fstab
-#
-# # pull the binary
-# ADD https://download-cdn.resilio.com/stable/linux-armhf/resilio-sync_armhf.tar.gz /tmp/resilio.tgz
-# RUN tar -xf /tmp/resilio.tgz -C /usr/bin rslsync && rm -f /tmp/resilio.tgz
-#
-# # copy extra files needed to run it
-# COPY sync.conf.default /etc/
-# COPY run_sync /usr/bin/
+RUN echo "LABEL=resilio-db /mnt/sync exfat rw,relatime,data=ordered 0 2" >> /etc/fstab
+
+# pull the binary
+ADD https://download-cdn.resilio.com/stable/linux-armhf/resilio-sync_armhf.tar.gz /tmp/resilio.tgz
+RUN tar -xf /tmp/resilio.tgz -C /usr/bin rslsync && rm -f /tmp/resilio.tgz
+
+# copy extra files needed to run it
+COPY sync.conf.default /etc/
+COPY run_sync /usr/bin/
 
 CMD ["tail", "-f", "/dev/null"]
 # CMD ["run_sync", "--config", "/mnt/sync/sync.conf"]

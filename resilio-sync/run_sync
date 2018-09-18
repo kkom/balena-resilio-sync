@@ -1,5 +1,11 @@
 #! /bin/bash
 
+if ! [ -d /mnt/sync ]; then
+    echo "Error: external hard drive was not mounted correctly."
+    echo "Note that it needs to be formatted as exFAT and called resilio-db."
+    exit 1
+fi
+
 mkdir -p /mnt/sync/folders
 mkdir -p /mnt/sync/config
 
