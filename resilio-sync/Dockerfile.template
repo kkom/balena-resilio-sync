@@ -4,8 +4,6 @@ FROM resin/%%RESIN_MACHINE_NAME%%-ubuntu:latest
 ENV INITSYSTEM on
 RUN apt-get update && apt-get install -y exfat-fuse exfat-utils
 RUN echo "LABEL=res-storage /mnt/res-storage exfat rw,relatime,data=ordered 0 2" >> /etc/fstab
-# COPY mnt-res-storage.mount /etc/systemd/system/
-# RUN systemctl enable mnt-res-storage.mount
 #
 # # pull the binary
 # ADD https://download-cdn.resilio.com/stable/linux-armhf/resilio-sync_armhf.tar.gz /tmp/resilio.tgz
