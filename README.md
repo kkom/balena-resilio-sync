@@ -11,6 +11,6 @@ A resin.io application to run Resilio Sync on your ARMv8-based device (i.e. Rasp
 ## How to use it
 
 1. Get an external USB drive, format it as exFAT and name it `resilio-db`. Plug it into the device.
-2. Create a resin.io application following [the resin.io tutorial](https://docs.resin.io/learn/getting-started/). Instead of cloning the resin.io repo, clone `git@gitlab.com:komorowskik/resin-resilio-sync.git`.
+2. Create a resin.io application following [the resin.io tutorial](https://docs.resin.io/learn/getting-started/). Instead of cloning the resin.io repo, clone `https://gitlab.com/komorowskik/resin-resilio-sync.git`.
 3. Find your device in the dashboard and tick the PUBLIC DEVICE URL option. Follow the link to access the Resilio Sync web configuration.
 4. Profit!
