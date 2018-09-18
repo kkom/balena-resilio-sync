@@ -8,3 +8,4 @@ services:
       - "80:8888"
     volumes:
       - "resilio-sync-data:/mnt/sync"
+    privileged: true

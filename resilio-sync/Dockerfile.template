@@ -1,5 +1,8 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-ubuntu:latest
 
+# so that we can access external drives
+ENV INITSYSTEM on
+
 # pull the binary
 ADD https://download-cdn.resilio.com/stable/linux-armhf/resilio-sync_armhf.tar.gz /tmp/resilio.tgz
 RUN tar -xf /tmp/resilio.tgz -C /usr/bin rslsync && rm -f /tmp/resilio.tgz
