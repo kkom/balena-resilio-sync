@@ -1,5 +1,13 @@
 #! /bin/bash
 
+# exit on any command raising an error
+set -e
+
+# if a special environment variable is set, do not start the sync program
+if [ ${DO_NOT_START_SYNC} -eq 1 ]; then
+    tail -f /dev/null
+fi
+
 if ! [ -d /mnt/sync ]; then
     echo "Error: external hard drive was not mounted correctly."
     echo "Note that it needs to be formatted as exFAT and called resilio-db."
