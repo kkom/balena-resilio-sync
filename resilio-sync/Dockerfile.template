@@ -2,7 +2,7 @@ FROM resin/%%RESIN_MACHINE_NAME%%-ubuntu:latest
 
 # mount the external drive (note: it needs to be formatted and named correctly)
 ENV INITSYSTEM on
-RUN apt-get update && apt-get install -y exfat-fuse exfat-utils
+RUN apt-get update && apt-get install -y exfat-fuse
 RUN echo "LABEL=resilio-db /mnt/sync exfat rw,relatime,data=ordered 0 2" >> /etc/fstab
 
 # pull the binary
