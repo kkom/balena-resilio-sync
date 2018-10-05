@@ -1,8 +1,16 @@
 version: '2'
+volumes:
+    ddclient-cache:
 services:
+  ddclient:
+    build: ./ddclient
+    restart: on-failure
+    volumes:
+      - "ddclient-cache:/var/cache/ddclient"
   resilio-sync:
     build: ./resilio-sync
     ports:
       - "80:8888"
       - "55555"
     privileged: true
+    restart: on-failure
