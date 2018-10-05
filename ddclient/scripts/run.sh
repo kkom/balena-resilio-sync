@@ -9,6 +9,7 @@ if [ ! ${START_CONTAINER} -eq 1 ]; then
 fi
 
 # Replace values in the configuration file
+mkdir /config
 ./replace.sh ddclient.conf.template > /config/ddclient.conf
 
 # Print the configuration file for debugging purposes
