@@ -3,8 +3,13 @@
 # exit on any command raising an error
 set -e
 
-# if a special environment variable is set, do not start the sync program
-if [ ${DO_NOT_START_SYNC} -eq 1 ]; then
+# exit the container if we don't need it on this machine
+if [ ! ${START_CONTAINER} -eq 1 ]; then
+    exit 0
+fi
+
+# wait indefinitely if we want to inspect the container without running sync
+if [ ! ${RUN_SYNC} -eq 1 ]; then
     tail -f /dev/null
 fi
 
