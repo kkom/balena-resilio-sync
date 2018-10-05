@@ -1,12 +1,24 @@
 version: '2'
 volumes:
     ddclient-cache:
+    pihole-config:
 services:
   ddclient:
     build: ./ddclient
     restart: on-failure
     volumes:
       - "ddclient-cache:/var/cache/ddclient"
+  pi-hole:
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "81:80/tcp"
+      - "443:443/tcp"
+    restart: on-failure
+    volumes:
+      - "pihole-config:/etc/pihole"
   resilio-sync:
     build: ./resilio-sync
     ports:
