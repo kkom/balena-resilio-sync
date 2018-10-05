@@ -3,8 +3,8 @@
 # Exit if any command fails
 set -e
 
-# if a special environment variable is set, exit the container
-if [ ${EXIT_CONTAINER} -eq 1 ]; then
+# unless the container is configured to actually start, it will exit immediately
+if [ ! ${START_CONTAINER} -eq 1 ]; then
     exit 0
 fi
 
