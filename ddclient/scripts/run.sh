@@ -13,7 +13,7 @@ mkdir -p /etc/ddclient
 ./replace.sh ddclient.conf.template > /etc/ddclient/ddclient.conf
 
 # Print the configuration file for debugging purposes
-cat /config/ddclient.conf
+cat /etc/ddclient/ddclient.conf
 
 # Run the Dynamic DNS client
 ddclient -daemon=300 -foreground -noquiet
