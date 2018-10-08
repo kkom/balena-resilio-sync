@@ -5,7 +5,7 @@ FROM resin/%%RESIN_MACHINE_NAME%%-ubuntu:latest
 ENV version_string igksofvgny
 
 # update the number of inotify watchers (used listen to file changes)
-RUN echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf
+RUN echo fs.inotify.max_user_watches=65536 | tee -a /etc/sysctl.conf
 
 # mount the external drive (note: it needs to be formatted and named correctly)
 ENV INITSYSTEM on
